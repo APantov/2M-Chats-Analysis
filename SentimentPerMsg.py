@@ -27,6 +27,6 @@ exploded_df = english_conversations_df.withColumn("conversation", explode(col("c
 # Add sentiment score for each message in the conversation
 sentiment_df = exploded_df.withColumn("sentiment_score", sentiment_udf(col("conversation.content")))
 
-sentiment_df.write.mode("overwrite").parquet("/user/s2853418/proj/sentiment_eng.parquet")
+sentiment_df.write.mode("overwrite").parquet("/user/s2853418/proj/sentiment_analysis_per_message.parquet")
 
 sentiment_df.select("conversation.content", "sentiment_score").show(100)
